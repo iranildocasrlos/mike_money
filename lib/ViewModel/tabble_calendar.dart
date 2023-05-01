@@ -23,7 +23,7 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
   }
 
   void _criarAgenda(DateTime day, DateTimefocusDay){
-
+    Navigator.pushNamed(context, "/appointment");
   }
 
 
