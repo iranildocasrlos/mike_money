@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:mike_money/ViewModel/tabble_calendar.dart';
 
+import '../ViewModel/area_adicionar_appointment.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final backgroundHome = const Color(0x211B34F2);
+
     final colorBar= const Color(0xE3131524);
+
+     criarAgenda(DateTime day){
+      Navigator.pushNamed(context, "/appointment");
+    }
+
+
     return  Scaffold(
 
       body: CustomScrollView(
@@ -23,8 +31,19 @@ class HomePage extends StatelessWidget {
             ),
           ),
          SliverToBoxAdapter(
-           child: Container(
-             child: MyTableCalendar(),
+           child: AreaCriarAppointment(
+             label: "+ Adicionar",
+             onTap: null,
+           ),
+         ),
+
+         SliverToBoxAdapter(
+           child: Column(
+             children: [
+               Container(
+                 child: MyTableCalendar(),
+               ),
+             ]
            ),
          )
         ],

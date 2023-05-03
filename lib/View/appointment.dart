@@ -9,6 +9,7 @@ class Appointment extends StatefulWidget {
 
 class _AppointmentState extends State<Appointment> {
   final colorBar= const Color(0xE3131524);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

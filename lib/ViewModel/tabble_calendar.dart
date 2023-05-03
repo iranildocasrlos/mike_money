@@ -13,6 +13,8 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
   DateTime today = DateTime.now();
   final colorBar= const Color(0xE3131524);
 
+ 
+
 
   //Método para capturar o dia Selecionado
   void _onDaySelected(DateTime day, DateTimefocusDay){
@@ -28,6 +30,7 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
 
 
 
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,7 +40,7 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Text("Minha Agenda" ,style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1 ),),
+
           Card(
             elevation: 5.0,
             shape: RoundedRectangleBorder(
@@ -51,9 +54,9 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
                 headerStyle: HeaderStyle(
                   formatButtonVisible: false,
                   titleCentered: true,
-                  titleTextStyle: TextStyle(color: Colors.white, fontSize: 20.0),
+                  titleTextStyle: TextStyle(color: colorBar, fontSize: 20.0),
                   decoration: BoxDecoration(
-                    color: colorBar,
+
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10)
@@ -67,12 +70,12 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
 
                   leftChevronIcon: Icon(
                     Icons.chevron_left,
-                    color: Colors.white,
+                    color: colorBar,
                     size: 28,
                   ),
                   rightChevronIcon: Icon(
                     Icons.chevron_right,
-                    color: Colors.white,
+                    color: colorBar,
                     size: 28,
                   ),
 
@@ -88,6 +91,9 @@ class _MyTableCalendarState extends State<MyTableCalendar> {
                 lastDay: DateTime.utc(2030,3,10),
               onDaySelected: _onDaySelected ,
               onDayLongPressed: _criarAgenda,
+
+              //Eventos
+
             ),
           )
         ],

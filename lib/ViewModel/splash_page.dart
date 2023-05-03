@@ -27,9 +27,19 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: colorBackground,
-      body: Center(
-        child: Image.asset("images/logo2_mike_money.png"),
-      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Image.asset("images/logo2_mike_money.png"),
+
+            Center(
+              child: Image.asset("images/mulhercalendario.jpg"),
+            )
+
+
+          ]
+        ),
+
     );
   }
 }
