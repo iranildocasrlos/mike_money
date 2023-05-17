@@ -7,13 +7,19 @@ class addButton extends StatelessWidget {
   final String label;
   final Function()? onTap;
 
+
   const addButton({Key? key, required this.label, required this.onTap}) : super(key: key);
+ 
 
 
   @override
   Widget build(BuildContext context) {
+    criarAgenda(DateTime day){
+      Navigator.pushNamed(context, "/appointment");
+    }
+    
     return GestureDetector(
-      onTap: ()=> onTap,
+      onTap: ()=> criarAgenda(DateTime.now()),
       child: Container(
         margin: EdgeInsets.only(top: 10, right: 8,left: 260),
         width: 100,
