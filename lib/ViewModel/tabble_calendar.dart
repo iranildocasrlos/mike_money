@@ -13,7 +13,7 @@ class MyTableCalendar extends StatefulWidget {
 
 class _MyTableCalendarState extends State<MyTableCalendar> {
   DateTime today = DateTime.now();
-  List<String> agenda = ["Seja bem vindo!!"];
+  List<String> agenda = ["Sem compromissos nesse dia!!"];
 
  
 
