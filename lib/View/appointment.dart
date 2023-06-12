@@ -14,8 +14,11 @@ class _AppointmentState extends State<Appointment> {
   TextEditingController _controllerTitulo = TextEditingController();
   TextEditingController _controllerDescricao = TextEditingController();
   TextEditingController _controllerData = TextEditingController();
+  TextEditingController _controllerHoraAlarme = TextEditingController();
+  TextEditingController _controllerHoraEvento = TextEditingController();
   DateTime dataAtual = DateTime.now();
-  String _endTime = "9:00 PM";
+  TimeOfDay _endTime = TimeOfDay.now();
+  TimeOfDay _firstTime = TimeOfDay.now();
 
 
   @override
@@ -193,10 +196,10 @@ class _AppointmentState extends State<Appointment> {
                 children:[
                   Expanded(
                       child: TextField(
-                        keyboardType: TextInputType.name,
-                        controller: _controllerData,
+
+                        controller: _controllerHoraAlarme,
                         decoration: InputDecoration(
-                          hintText: _endTime,
+                          hintText: _endTime.toString(),
                           suffixIcon: Icon(Icons.access_time_rounded),
                           filled: true,
                           fillColor: Colors.white,
@@ -212,13 +215,32 @@ class _AppointmentState extends State<Appointment> {
                           // Added this
 
                         ),
+                        onTap: () async{
+                                      final TimeOfDay pickedTime =  showTimePicker(
+                                      context: context,
+                                      initialTime: TimeOfDay.now(),
+                                      ) as TimeOfDay;
+
+                                      if (pickedTime != null && pickedTime != _endTime) {
+                                        setState(() {
+                                          _firstTime = pickedTime;
+                                          _controllerHoraEvento.text = _firstTime.toString();
+                                        });
+                                      }
+
+                              },//,
+
+
+
                       ),
                   ),
+
                   SizedBox(width: 12.0,),
+
                   Expanded(
                     child: TextField(
-                      keyboardType: TextInputType.name,
-                      controller: _controllerData,
+
+                      controller: _controllerHoraEvento,
                       decoration: InputDecoration(
                         hintText: "Hora do evento",
                         suffixIcon: Icon(Icons.access_time_rounded),
@@ -238,14 +260,19 @@ class _AppointmentState extends State<Appointment> {
                       ),
 
                       onTap: () async{
-
-
-                        showTimePicker(
+                        final TimeOfDay pickedTime =  showTimePicker(
                           context: context,
                           initialTime: TimeOfDay.now(),
+                        ) as TimeOfDay;
 
-                        );
+                        if (pickedTime != null && pickedTime != _endTime) {
+                        setState(() {
+                        _endTime = pickedTime;
+                        _controllerHoraEvento.text = _endTime.toString();
 
+                        });
+
+                       }
                       },//async
                     ),
                   ),
