@@ -290,6 +290,35 @@ class _AppointmentState extends State<Appointment> {
                 ]
               ),
 
+                SizedBox(height: 30.0,),
+
+
+                Row(
+                  children:[
+                    Spacer(),
+                    Center(
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width / 2 ,
+                        child: TextButton(
+                            style: TextButton.styleFrom(
+                                backgroundColor: Colors.indigo,
+                                elevation: 10,
+                                shadowColor: Colors.grey
+                            ),
+                            onPressed: (){
+                              print("Salvar horário");
+                            },
+                            child: Text("Salvar Evento",
+                            style: TextStyle(
+                              color: Colors.white
+                            ),)),
+                      ),
+                    ),
+                    Spacer(),
+
+                  ]
+                ),
 
 
             ],
