@@ -235,7 +235,7 @@ class _AppointmentState extends State<Appointment> {
                             setState(() {
                               _firstTime = value ?? TimeOfDay.now();
                               if(_firstTime != null){
-                                _controllerHoraAlarme.text = _firstTime.toString();
+                                _controllerHoraAlarme.text = _firstTime.format(context).toString();
                               }
 
                             });
@@ -279,7 +279,7 @@ class _AppointmentState extends State<Appointment> {
                           setState(() {
                             _endTime = value ?? TimeOfDay.now();
                             if(_endTime != null){
-                              _controllerHoraEvento.text = _endTime.toString();
+                              _controllerHoraEvento.text = _endTime.format(context).toString();
                             }
 
                           });
