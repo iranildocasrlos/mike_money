@@ -20,6 +20,17 @@ class _AppointmentState extends State<Appointment> {
   TimeOfDay _endTime = TimeOfDay.now();
   TimeOfDay _firstTime = TimeOfDay.now();
 
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _endTime = TimeOfDay.now();
+    _firstTime = TimeOfDay.now();
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +202,7 @@ class _AppointmentState extends State<Appointment> {
               ),
 
 
-         ///Alarme e hora do Evento
+         ///Hora do Alarme
               Row(
                 children:[
                   Expanded(
@@ -199,7 +210,7 @@ class _AppointmentState extends State<Appointment> {
 
                         controller: _controllerHoraAlarme,
                         decoration: InputDecoration(
-                          hintText: _endTime.toString(),
+
                           suffixIcon: Icon(Icons.access_time_rounded),
                           filled: true,
                           fillColor: Colors.white,
@@ -215,34 +226,35 @@ class _AppointmentState extends State<Appointment> {
                           // Added this
 
                         ),
+
                         onTap: () async{
-                                      final TimeOfDay pickedTime =  showTimePicker(
-                                      context: context,
-                                      initialTime: TimeOfDay.now(),
-                                      ) as TimeOfDay;
+                          await  showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now()
+                          ).then((value){
+                            setState(() {
+                              _firstTime = value ?? TimeOfDay.now();
+                              if(_firstTime != null){
+                                _controllerHoraAlarme.text = _firstTime.toString();
+                              }
 
-                                      if (pickedTime != null && pickedTime != _endTime) {
-                                        setState(() {
-                                          _firstTime = pickedTime;
-                                          _controllerHoraEvento.text = _firstTime.toString();
-                                        });
-                                      }
-
-                              },//,
-
+                            });
+                          });
+                        },//async
 
 
                       ),
                   ),
-
                   SizedBox(width: 12.0,),
 
+
+                  ///Hora do Evento
                   Expanded(
                     child: TextField(
 
                       controller: _controllerHoraEvento,
                       decoration: InputDecoration(
-                        hintText: "Hora do evento",
+
                         suffixIcon: Icon(Icons.access_time_rounded),
                         filled: true,
                         fillColor: Colors.white,
@@ -260,19 +272,18 @@ class _AppointmentState extends State<Appointment> {
                       ),
 
                       onTap: () async{
-                        final TimeOfDay pickedTime =  showTimePicker(
-                          context: context,
-                          initialTime: TimeOfDay.now(),
-                        ) as TimeOfDay;
+                        await  showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now()
+                        ).then((value){
+                          setState(() {
+                            _endTime = value ?? TimeOfDay.now();
+                            if(_endTime != null){
+                              _controllerHoraEvento.text = _endTime.toString();
+                            }
 
-                        if (pickedTime != null && pickedTime != _endTime) {
-                        setState(() {
-                        _endTime = pickedTime;
-                        _controllerHoraEvento.text = _endTime.toString();
-
+                          });
                         });
-
-                       }
                       },//async
                     ),
                   ),
@@ -287,4 +298,8 @@ class _AppointmentState extends State<Appointment> {
       ),
     );
   }
+
+
+
+
 }
